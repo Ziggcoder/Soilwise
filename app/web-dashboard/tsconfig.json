@@ -1,5 +1,10 @@
 {
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ],
   "compilerOptions": {
+    "composite": true,
     "target": "ES2023",
     "useDefineForClassFields": true,
     "lib": ["ES2023", "DOM", "DOM.Iterable"],
@@ -29,6 +34,7 @@
       "@/*": ["src/*"]
     }
   },
-  "include": ["src"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": ["src"]
+
+  // "references": [{ "path": "./tsconfig.node.json" }]
 }
