@@ -1,14 +1,24 @@
 {
   "name": "soilwise",
+  "private": true,
   "version": "1.0.0",
   "description": "",
+  "workspaces": [
+    "app/api-server",
+    "app/pwa-farmer",
+    "app/web-dashboard"
+  ],
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "concurrently -k -n ***API***,*FARMER**,DASHBOARD -c green,cyan,magenta \"npm run dev --workspace app/api-server\" \"npm run dev --workspace app/pwa-farmer\" \"npm run dev --workspace app/web-dashboard\""
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Ziggcoder/Soilwise.git"
+  },
+  "dependencies": {
+    "concurrently": "^7.6.0"
   },
   "keywords": [],
   "author": "",
