@@ -1,56 +1,126 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/soilwais.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="SoilWise Farmer - Offline-first farming assistant" />
-    <meta name="theme-color" content="#3b82f6" />
-    <title>SoilWise Farmer</title>
-    <!-- PWA Meta Tags -->
-    <!-- <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/soilwais.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="SoilWise Farmer - Offline-first farming assistant" />
+  <meta name="theme-color" content="#3b82f6" />
+  <title>SoilWise Farmer</title>
+  <!-- PWA Meta Tags -->
+  <!-- <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="apple-mobile-web-app-title" content="SoilWise" /> -->
-     <!-- Splash Screen -->
-    <style>
-      #initial-loader {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: #3b82f6;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        z-index: 9999;
+  <!-- Splash Screen -->
+  <style>
+    #initial-loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #3b82f6;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      z-index: 9999;
+    }
+
+    .loader-svg {
+      width: 64px;
+      height: 64px;
+      opacity: 0;
+      transform: translateY(50px) scale(0.5);
+      animation: plantGrow 1.5s ease-out forwards;
+      margin-bottom: 20px;
+    }
+
+    @keyframes plantGrow {
+      0% {
+        opacity: 1;
+        transform: translateY(50px) scale(0);
       }
-      
-      .loader-spinner {
-        width: 40px;
-        height: 40px;
-        border: 4px solid rgba(255, 255, 255, 0.3);
-        border-top: 4px solid white;
-        border-radius: 50%;
-        animation: spin 1s linear infinite;
-        margin-bottom: 20px;
+
+      20% {
+        opacity: 1;
+        transform: translateY(20px) scale(1);
       }
-      
-      @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
+
+      40% {
+        opacity: 1;
+        transform: translateY(-10px) scale(2.5);
       }
-    </style>
-  </head>
-  <body>
-    <div id="root"> <div id="initial-loader">
-        <div class="loader-spinner"></div>
-        <h2>SoilWise</h2>
-        <p>Loading your farming assistant...</p>
-      </div></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+
+      60% {
+        opacity: 0.8;
+        transform: translateY(5px) scale(2.0);
+      }
+
+      80% {
+        opacity: 0.4;
+        transform: translateY(10px) scale(1.5);
+      }
+
+      100% {
+        opacity: 0;
+        transform: translateY(-200px) scale(0);
+      }
+    }
+
+    .loader-svg {
+      width: 64px;
+      height: 64px;
+      opacity: 0;
+      transform: translateY(50px) scale(0.5);
+      animation: plantGrow 1.5s ease-out infinite;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 24px;
+      font-weight: 600;
+    }
+
+    p {
+      margin-top: 8px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="root">
+    <div id="initial-loader">
+      <svg class="loader-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M32 44V28" stroke="#228B22" stroke-width="4" stroke-linecap="round" />
+        <path d="M32 28C32 18 40 14 48 14C49.6569 14 51 15.3431 51 17C51 25 44 28 32 28Z" fill="#A3D977"
+          stroke="#228B22" stroke-width="2" />
+        <path d="M32 28C32 18 24 14 16 14C14.3431 14 13 15.3431 13 17C13 25 20 28 32 28Z" fill="#A3D977"
+          stroke="#228B22" stroke-width="2" />
+        <circle cx="32" cy="50" r="2" fill="#228B22" />
+      </svg>
+      <!-- Text Encapsulated in Soil SVG -->
+      <div class="soil-container">
+        <svg class="soil-svg" viewBox="0 0 320 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <path d="M0,20 C80,60 240,-10 320,20 L320,120 L0,120 Z" fill="#8B4513" />
+        </svg>
+        <circle cx="40" cy="100" r="3" fill="#5C3317" />
+        <circle cx="90" cy="90" r="2.5" fill="#7B3F00" />
+        <circle cx="200" cy="95" r="3" fill="#5C3317" />
+        <circle cx="260" cy="85" r="2" fill="#7B3F00" />
+        </svg>
+
+        <div class="soil-content">
+          <h2>SoilWise</h2>
+          <p>Loading your farming assistant...</p>
+        </div>
+      </div>
+      <script type="module" src="./src/main.tsx"></script>
+</body>
+
 </html>
